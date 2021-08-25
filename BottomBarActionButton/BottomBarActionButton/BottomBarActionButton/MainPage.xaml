@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BottomBarActionButton.MainPage">
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout 
+                x:Name="Tab1" 
+                Grid.Row="0" 
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="Green">
+                <Label  
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    TextColor="Black"
+                    Text="This is tab 1"/>
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer 
+                        Direction="Left" 
+                        Swiped="SwipeGestureRecognizer1_Swiped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout 
+                x:Name="Tab2" 
+                IsVisible="false"
+                Grid.Row="0" 
+                VerticalOptions="FillAndExpand" 
+                BackgroundColor="Blue">
+                <Label  
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="White" 
+                    Text="This is tab 2"/>
+                <StackLayout.GestureRecognizers>
+                    <SwipeGestureRecognizer 
+                        Direction="Right"
+                        Swiped="SwipeGestureRecognizer2_Swiped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout  
+                Grid.Row="1"
+                VerticalOptions="EndAndExpand" 
+                Padding="0"
+                Margin="0"
+                Spacing="0">
+                <Rectangle HeightRequest="2">
+                    <Rectangle.Background>
+                        <LinearGradientBrush  EndPoint="0,1">
+                            <GradientStop 
+                                Color="#1F000000"
+                                Offset="0.1" />
+                            <GradientStop 
+                                Color="Transparent"
+                                Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Rectangle.Background>
+                </Rectangle>
+                <StackLayout 
+                    Padding="10,5">
+                    <StackLayout
+                        Orientation="Horizontal">
+
+                        <StackLayout 
+                            x:Name="TabView1" 
+                            HorizontalOptions="StartAndExpand" 
+                            Padding="0"
+                            Margin="0"
+                            Spacing="0">
+                            <Label
+                                VerticalTextAlignment="Center" 
+                                HorizontalTextAlignment="Center" 
+                                Text="briefcase"
+                                FontSize="20" 
+                                TextColor="Orange" 
+                                FontFamily="FASolid">
+                                <Label.Triggers>
+                                    <DataTrigger 
+                                        TargetType="Label" 
+                                        Binding="{x:Binding Source={x:Reference Tab1}, Path=IsVisible}"     
+                                        Value="False">
+                                        <Setter 
+                                            Property="TextColor" 
+                                            Value="Gray"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label 
+                                Text="Tab 1" 
+                                TextColor="Orange">
+                                <Label.Triggers>
+                                    <DataTrigger 
+                                        TargetType="Label" 
+                                        Binding="{x:Binding Source={x:Reference Tab1}, Path=IsVisible}"     
+                                        Value="False">
+                                        <Setter 
+                                            Property="TextColor"
+                                            Value="Gray"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer1_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+
+                        <Frame 
+                            VerticalOptions="StartAndExpand" 
+                            HorizontalOptions="CenterAndExpand" 
+                            Margin="0,-30,0,0"
+                            Padding="0"
+                            CornerRadius="60"
+                            BackgroundColor="Orange" 
+                            HeightRequest="60"
+                            WidthRequest="60">
+                            <Image 
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Source="{FontImage Glyph=play, FontFamily=FASolid, Color=White,Size=20}"/>
+                        </Frame>
+
+                        <StackLayout
+                            x:Name="TabView2"
+                            HorizontalOptions="EndAndExpand" 
+                            Padding="0"
+                            Margin="0"
+                            Spacing="0">
+                            <Label 
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="Center" 
+                                Text="cog" 
+                                FontSize="20"
+                                TextColor="Orange" 
+                                FontFamily="FASolid">
+                                <Label.Triggers>
+                                    <DataTrigger 
+                                        TargetType="Label" 
+                                        Binding="{x:Binding Source={x:Reference Tab2}, Path=IsVisible}"     
+                                        Value="False">
+                                        <Setter 
+                                            Property="TextColor"
+                                            Value="Gray"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Label 
+                                Text="Tab 2" 
+                                TextColor="Orange">
+                                <Label.Triggers>
+                                    <DataTrigger 
+                                        TargetType="Label" 
+                                        Binding="{x:Binding Source={x:Reference Tab2}, Path=IsVisible}"     
+                                        Value="False">
+                                        <Setter 
+                                            Property="TextColor" 
+                                            Value="Gray"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer2_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
